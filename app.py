@@ -567,7 +567,7 @@ with tab1:
             ))
         apply_ibcs_layout(fig_line, height=340)
         fig_line.update_yaxes(tickprefix="$", tickformat=".2f")
-        st.plotly_chart(fig_line, use_container_width=True)
+        st.plotly_chart(fig_line, width="stretch")
         st.markdown('<div class="footnote">IBCS: solid line = current actual · dotted line = comparative segment</div></div>', unsafe_allow_html=True)
 
     with c2:
@@ -588,7 +588,7 @@ with tab1:
         apply_ibcs_layout(fig_size, height=340)
         fig_size.update_xaxes(ticksuffix="%", range=[0, size_data['Pct'].max()*1.2])
         fig_size.update_layout(showlegend=False)
-        st.plotly_chart(fig_size, use_container_width=True)
+        st.plotly_chart(fig_size, width="stretch")
         st.markdown('<div class="footnote">Source: avocado-cleaned.csv · PLU = Price Look-Up code</div></div>', unsafe_allow_html=True)
 
     # ── Charts row 2 ─────────────────────────────────────────────────────────
@@ -616,7 +616,7 @@ with tab1:
             xaxis=dict(tickformat=".0s"),
             showlegend=False
         )
-        st.plotly_chart(fig_rank, use_container_width=True)
+        st.plotly_chart(fig_rank, width="stretch")
         st.markdown('<div class="footnote">▪ Green bar = #1 market · Regional aggregates excluded</div></div>', unsafe_allow_html=True)
 
     with c4:
@@ -636,7 +636,7 @@ with tab1:
             ))
         apply_ibcs_layout(fig_season, height=400)
         fig_season.update_yaxes(tickprefix="$")
-        st.plotly_chart(fig_season, use_container_width=True)
+        st.plotly_chart(fig_season, width="stretch")
         st.markdown('<div class="footnote">Seasonality analysis: monthly average across all selected years</div></div>', unsafe_allow_html=True)
 
 
@@ -669,7 +669,7 @@ with tab2:
             yaxis=dict(categoryorder='median ascending'),
             xaxis=dict(tickprefix="$")
         )
-        st.plotly_chart(fig_box, use_container_width=True)
+        st.plotly_chart(fig_box, width="stretch")
         st.markdown('<div class="footnote">IBCS: box = IQR · line = median · whiskers = 1.5×IQR</div></div>', unsafe_allow_html=True)
 
     with p2:
@@ -689,7 +689,7 @@ with tab2:
         apply_ibcs_layout(fig_scatter, height=480)
         fig_scatter.update_yaxes(tickprefix="$")
         fig_scatter.update_xaxes(title_text="Total Volume (log scale)", tickformat=".0s")
-        st.plotly_chart(fig_scatter, use_container_width=True)
+        st.plotly_chart(fig_scatter, width="stretch")
         st.markdown('<div class="footnote">OLS regression lines indicate demand elasticity · top 5% volume outliers excluded</div></div>', unsafe_allow_html=True)
 
     # Price premium table
@@ -764,7 +764,7 @@ with tab3:
             # Relabel clusters
             for trace in fig_clust.data:
                 trace.name = f"Segment {trace.name}"
-            st.plotly_chart(fig_clust, use_container_width=True)
+            st.plotly_chart(fig_clust, width="stretch")
             st.markdown('<div class="footnote">K-Means · k=4 · StandardScaler on Price, Volume, Bag Ratio · bubble size = bagged sales share</div></div>', unsafe_allow_html=True)
 
         with col2:
@@ -807,7 +807,7 @@ with tab3:
             ))
             apply_ibcs_layout(fig, height=360)
             fig.update_layout(yaxis=dict(categoryorder='total ascending'), showlegend=False)
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
         st.markdown('<div class="footnote">NLP: word frequency after stopword removal · top 15 terms</div></div>', unsafe_allow_html=True)
 
     with k1:
@@ -866,7 +866,7 @@ with tab4:
         apply_ibcs_layout(fig_diag, height=380)
         fig_diag.update_xaxes(title_text="Actual Price", tickprefix="$")
         fig_diag.update_yaxes(title_text="Predicted Price", tickprefix="$")
-        st.plotly_chart(fig_diag, use_container_width=True)
+        st.plotly_chart(fig_diag, width="stretch")
         st.markdown('<div class="footnote">Green dashed line = perfect prediction baseline (y=x) · 2,000 point sample</div></div>', unsafe_allow_html=True)
 
     with d2:
@@ -885,7 +885,7 @@ with tab4:
         apply_ibcs_layout(fig_imp, height=380)
         fig_imp.update_layout(showlegend=False)
         fig_imp.update_xaxes(range=[0, imp_df['Importance'].max()*1.25])
-        st.plotly_chart(fig_imp, use_container_width=True)
+        st.plotly_chart(fig_imp, width="stretch")
         st.markdown('<div class="footnote">▪ Green = highest importance feature · Darker = more influential</div></div>', unsafe_allow_html=True)
 
     # Simulator
