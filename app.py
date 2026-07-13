@@ -236,18 +236,26 @@ section[data-testid="stSidebar"] .block-container {{ padding: 1.5rem 1.25rem; }}
 /* ── TAB NAVIGATION ── */
 div[data-testid="stTabs"] button {{
     font-family: 'DM Sans', sans-serif !important;
-    font-size: 12px !important;
-    font-weight: 600 !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
     letter-spacing: 0.05em !important;
     text-transform: uppercase !important;
-    color: {C_MID_GREY} !important;
-    border-radius: 0 !important;
-    border-bottom: 2px solid transparent !important;
-    padding: 10px 16px !important;
+    color: {C_WHITE} !important;
+    background-color: {C_MID_GREY} !important;
+    border-radius: 6px 6px 0 0 !important;
+    border: none !important;
+    padding: 12px 24px !important;
+    margin-right: 4px !important;
+    transition: all 0.2s ease !important;
 }}
 div[data-testid="stTabs"] button[aria-selected="true"] {{
-    color: {C_BLACK} !important;
-    border-bottom-color: {C_BLACK} !important;
+    color: {C_WHITE} !important;
+    background-color: {C_ACCENT} !important;
+    border-bottom: none !important;
+}}
+div[data-testid="stTabs"] button:hover {{
+    background-color: {C_DARK_GREY} !important;
+    color: {C_WHITE} !important;
 }}
 
 /* ── STREAMLIT OVERRIDES ── */
