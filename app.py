@@ -731,33 +731,10 @@ with tab2:
         rows = ""
         for region, row in premium_df.iterrows():
             bar_w = int(row['Premium (%)']/max_prem*80) if max_prem > 0 else 0
-            rows += f"""
-            <tr>
-                <td>{region}</td>
-                <td style="font-family:'DM Mono',monospace;">${row['conventional']:.2f}</td>
-                <td style="font-family:'DM Mono',monospace;">${row['organic']:.2f}</td>
-                <td style="font-family:'DM Mono',monospace;">${row['Premium ($)']:.2f}</td>
-                <td style="font-family:'DM Mono',monospace;">
-                    +{row['Premium (%)']:.1f}%
-                    <span class="var-bar-pos" style="width:{bar_w}px;"></span>
-                </td>
-            </tr>
-            """
-        st.markdown(f"""
-        <table class="ibcs-table">
-            <thead>
-                <tr>
-                    <th>Khu vực (Region)</th>
-                    <th>Giá Bơ Thường</th>
-                    <th>Giá Bơ Organic</th>
-                    <th>Chênh lệch ($)</th>
-                    <th>Phụ phí Organic (%)</th>
-                </tr>
-            </thead>
-            <tbody>{rows}</tbody>
-        </table>
-        <div class="footnote" style="margin-top:8px;">Top 15 thị trường có mức chênh lệch giá bơ Organic cao nhất</div>
-        """, unsafe_allow_html=True)
+            rows += f"<tr><td>{region}</td><td style=\"font-family:'DM Mono',monospace;\">${row['conventional']:.2f}</td><td style=\"font-family:'DM Mono',monospace;\">${row['organic']:.2f}</td><td style=\"font-family:'DM Mono',monospace;\">${row['Premium ($)']:.2f}</td><td style=\"font-family:'DM Mono',monospace;\">+{row['Premium (%)']:.1f}%<span class=\"var-bar-pos\" style=\"width:{bar_w}px;\"></span></td></tr>"
+        
+        table_html = f'<table class="ibcs-table"><thead><tr><th>Khu vực (Region)</th><th>Giá Bơ Thường</th><th>Giá Bơ Organic</th><th>Chênh lệch ($)</th><th>Phụ phí Organic (%)</th></tr></thead><tbody>{rows}</tbody></table><div class="footnote" style="margin-top:8px;">Top 15 thị trường có mức chênh lệch giá bơ Organic cao nhất</div>'
+        st.markdown(table_html, unsafe_allow_html=True)
 
 
 # ==================== TAB 3: PRICING SIMULATOR ====================
@@ -859,19 +836,9 @@ if not is_exec_mode:
                 rows = ""
                 for _, r in cluster_stats.iterrows():
                     seg = int(r['Cluster'])
-                    rows += f"""
-                    <tr>
-                        <td>Phân khúc {seg}</td>
-                        <td>${r['AveragePrice']:.2f}</td>
-                        <td>{r['TotalVolume']/1e3:.0f}K</td>
-                        <td>{r['Bags_Ratio']:.1%}</td>
-                    </tr>"""
-                st.markdown(f"""
-                <table class="ibcs-table">
-                    <thead><tr><th>Nhóm</th><th>Giá TB</th><th>Sản lượng</th><th>Tỷ lệ túi</th></tr></thead>
-                    <tbody>{rows}</tbody>
-                </table>
-                """, unsafe_allow_html=True)
+                    rows += f"<tr><td>Phân khúc {seg}</td><td>${r['AveragePrice']:.2f}</td><td>{r['TotalVolume']/1e3:.0f}K</td><td>{r['Bags_Ratio']:.1%}</td></tr>"
+                table_html = f'<table class="ibcs-table"><thead><tr><th>Nhóm</th><th>Giá TB</th><th>Sản lượng</th><th>Tỷ lệ túi</th></tr></thead><tbody>{rows}</tbody></table>'
+                st.markdown(table_html, unsafe_allow_html=True)
                 st.markdown('</div>', unsafe_allow_html=True)
 
         # NLP Keyword analysis
